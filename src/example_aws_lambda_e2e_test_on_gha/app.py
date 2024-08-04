@@ -12,9 +12,8 @@ class Status(Enum):
 
 def handler(event: dict, _: LambdaContext) -> dict:
     msg = event.get("message")
+    status = Status.OK
     if msg is None:
         msg = "Not Found"
         status = Status.BAD_REQUEST
-    else:
-        status = Status.OK
     return {"message": msg, "status": status.value}
